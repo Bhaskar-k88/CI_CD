@@ -12,12 +12,10 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 
+const path = require("path");
 
 app.post("/webhook", (req, res) => {
-  console.log("Webhook received");
-
-  exec("git pull origin main", (err, stdout, stderr) => {
-    console.log("GIT OUTPUT:");
+  exec("git pull origin main", { cwd: path.resolve(__dirname, "..") }, (err, stdout, stderr) => {
     console.log(stdout);
     console.log(stderr);
   });
