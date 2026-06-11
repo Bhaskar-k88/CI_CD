@@ -12,11 +12,14 @@ app.get("/", (req, res) => {
 
 app.use(express.json());
 
-app.use(express.json());
 
 app.post("/webhook", (req, res) => {
-  exec("echo Deploying Project", (err, stdout, stderr) => {
+  console.log("Webhook received");
+
+  exec("git pull origin main", (err, stdout, stderr) => {
+    console.log("GIT OUTPUT:");
     console.log(stdout);
+    console.log(stderr);
   });
 
   res.send("OK");
