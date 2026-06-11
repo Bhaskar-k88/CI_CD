@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Server is running...");
+  res.send("Server is running...");  
 });
 
 app.post("/webhook", (req, res) => {
@@ -28,7 +28,7 @@ app.post("/webhook", (req, res) => {
   res.send("OK");
 });
 
-console.log("CI/CD test update");
+console.log("CI/CD test updated");
 
 app.listen(5001, () => {
   console.log("Server running on port 5000");
