@@ -1,24 +1,29 @@
 const express = require("express");
 const cors = require("cors");
 const { exec } = require("child_process");
+const path = require("path");
 
 const app = express();
 
-app.use(cors()); // ✅ allow all origins
+app.use(cors());
+app.use(express.json());
 
 app.get("/", (req, res) => {
   res.send("Server is running...");
 });
 
-app.use(express.json());
-
-const path = require("path");
-
 app.post("/webhook", (req, res) => {
-  exec("git pull origin main", { cwd: path.resolve(__dirname, "..") }, (err, stdout, stderr) => {
-    console.log(stdout);
-    console.log(stderr);
-  });
+  exec(
+    "git pull origin main",
+    { cwd: path.resolve(__dirname, "..") },
+    (err, stdout, stderr) => {
+      if (err) {
+        console.log("ERROR:", err.message);
+      }
+      console.log(stdout);
+      console.log(stderr);
+    }
+  );
 
   res.send("OK");
 });
