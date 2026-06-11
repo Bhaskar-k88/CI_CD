@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Docker Frontend</title>
+</head>
+<body>
+  <h1>Todo App Frontend</h1>
+  <button onclick="callBackend()">Call Backend</button>
+
+  <p id="output"></p>
+
+  <script>
+    async function callBackend() {
+      const res = await fetch("/api")
+      const data = await res.text();
+      document.getElementById("output").innerText = data;
+    }
+  </script>
+</body>
+</html>
