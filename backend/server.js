@@ -28,6 +28,8 @@ app.post("/webhook", (req, res) => {
   res.send("OK");
 });
 
+console.log("CI/CD test update");
+
 app.listen(5001, () => {
   console.log("Server running on port 5000");
 });
